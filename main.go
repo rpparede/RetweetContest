@@ -9,7 +9,8 @@ import (
 	"os"
 	"time"
 
-	"./twitter"
+	"github.com/rpparede/RetweetContest/twitter"
+
 	"github.com/gorilla/mux"
 	"github.com/joho/godotenv"
 )
