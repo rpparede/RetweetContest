@@ -29,8 +29,8 @@ func handleRequests() {
 	// replace http.HandleFunc with myRouter.HandleFunc
 
 	myRouter.HandleFunc("/twitterContest/{id}", returnSingleWinner)
-
-	log.Fatal(http.ListenAndServe(":10000", myRouter))
+	port := os.Getenv("PORT")
+	log.Fatal(http.ListenAndServe(":"+port, myRouter))
 }
 
 func returnSingleWinner(w http.ResponseWriter, r *http.Request) {
