@@ -16,11 +16,12 @@ import (
 )
 
 func init() {
-	if os.Getenv("APP_ENV") != "production" {
-		if err := godotenv.Load(); err != nil {
-			panic(err)
-		}
+
+	if err := godotenv.Load(); err != nil {
+		//panic(err)
+		fmt.Println("No env file found")
 	}
+
 }
 func handleRequests() {
 	// creates a new instance of a mux router
