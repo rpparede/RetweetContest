@@ -52,7 +52,6 @@ func twitterClient(key string, secret string) (*http.Client, error) {
 }
 
 func (c *Client) Retweeters(tweetID string) ([]string, error) {
-
 	url := fmt.Sprintf("https://api.twitter.com/1.1/statuses/retweets/%s.json?count=100", tweetID)
 	res2, err := c.client.Get(url)
 	if err != nil {
@@ -62,8 +61,8 @@ func (c *Client) Retweeters(tweetID string) ([]string, error) {
 	var retweets []Retweet
 	dec := json.NewDecoder(res2.Body)
 	err = dec.Decode(&retweets)
-	if err != nil {
-		panic(err)
+	if err != nil || len(retweets) == 0 {
+		return nil, err
 	}
 	var usernames []string
 	for _, retweet := range retweets {
