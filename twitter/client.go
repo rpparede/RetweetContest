@@ -10,6 +10,7 @@ import (
 	"golang.org/x/oauth2"
 )
 
+//Initialize twitter client
 func New(key, secret string) (*Client, error) {
 	client, err := twitterClient(key, secret)
 	if err != nil {
