@@ -41,7 +41,14 @@ func returnSingleWinner(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		winner = ""
 	}
-	json.NewEncoder(w).Encode(winner)
+
+	var retweets twitter.Retweet
+	retweets.User.ScreenName = winner
+	jsonRes, err := json.Marshal(retweets)
+
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
+	w.Write(jsonRes)
 }
 
 func main() {
